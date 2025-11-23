@@ -1,5 +1,5 @@
 document.getElementById("back-btn").addEventListener("click", () => {
-    window.location.href = "first.html";
+    window.location.href = "index.html";
 });
 
 const params = new URLSearchParams(window.location.search);
