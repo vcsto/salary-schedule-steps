@@ -1,0 +1,515 @@
+body {
+    margin: 0;
+    font-family: "Playfair Display", Georgia, serif;
+}
+
+
+
+/* ---------- BACK BUTTON ---------- */
+
+#back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 8px 14px;
+    font-size: 16px;
+    border: 2px solid #3b0b77;  
+    border-radius: 6px;
+    background-color: #d8c6ff;
+    color: black;                    /* <-- text color changed */
+    cursor: pointer;
+
+    transition: background-color 0.25s ease, 
+                color 0.25s ease, 
+                border-color 0.25s ease;   /* <-- smooth animation */
+}
+
+#back-btn:hover {
+    background-color: #bc78ff;       /* smoother hover color */
+    border-color: #1f034b;           /* optional: darken border on hover */
+}
+
+#back-btn:active {
+    transform: scale(0.97);
+}
+
+
+/* ---------- TITLES ---------- */
+
+.title-container {
+    text-align: center;
+    margin-top: 60px;
+    line-height: 1.25;
+}
+
+.title-main,
+.title-sub {
+    font-size: 38px;
+    font-weight: 700;
+}
+
+.title-small {
+    font-size: 26px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+/* ---------- BUTTON ROW ---------- */
+
+#button-row {
+    display: none;
+    margin-top: 24px;
+    justify-content: center;
+    gap: 12px;
+}
+
+#button-row button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid #3b0b77;
+    background: #ffffff;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#button-row button:hover {
+    background: #f3e6ff;
+}
+
+#button-row button.active {
+    background-color: #e8d6ff;
+    border-color: #3b0b77;
+}
+
+/* ---------- MAIN SALARY TABLE ---------- */
+
+#table-wrapper {
+    display: none;
+    justify-content: center;
+    width: 780px;
+    margin: 40px auto;
+    border: 1px solid #3b0b77;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+#salary-table {
+    border-collapse: collapse;
+    width: 780px;
+}
+
+#salary-table td {
+    border: 1px solid #999;
+    padding: 6px 10px;
+    text-align: center;
+    vertical-align: middle;
+    height: 28px;
+}
+
+.full-width-header {
+    background-color: #f3e6ff;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    border-bottom: 1px solid #999;
+}
+
+#salary-table tr:first-child td,
+#salary-table tr:nth-child(2) td {
+    height: 25px;
+}
+
+#salary-table tr:nth-child(2) td {
+    background-color: #fff6cc;
+}
+
+/* left two columns yellow */
+#salary-table tr:nth-child(n+3) td:nth-child(-n+2) {
+    background-color: #fff6cc;
+}
+
+/* body rows */
+#salary-table tr:nth-child(n+3) td {
+    height: 22px;
+    padding: 3px 6px;
+}
+
+/* ---------- CALCULATOR ---------- */
+
+#calculator {
+    display: none;
+    width: 100%;
+    max-width: 420px;
+    margin: 1px auto 40px auto;
+    text-align: center;
+    font-size: 16px;
+}
+
+#calculator h3 {
+    margin-bottom: 32px;   /* was 18px */
+    font-size: 20px;
+}
+
+.calc-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+#calculator input[type="text"] {
+    width: 220px;
+    padding: 4px 6px;
+    font-size: 15px;
+}
+
+.degree-options {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.degree-options label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 16px;
+}
+
+/* ---------- Calculate Button ---------- */
+
+#calc-btn {
+    background-color: #d8c6ff;
+    border: 1px solid #3b0b77;
+    padding: 10px 22px;
+    border-radius: 6px;
+    cursor: not-allowed;
+    font-size: 15px;
+
+    margin-top: 26px;   /* ⬅️ increase spacing */
+    opacity: 0.4;
+    transition: 0.2s ease;
+}
+
+
+
+#calc-btn.enabled {
+    cursor: pointer;
+    opacity: 1;
+}
+
+#calc-btn.enabled:hover {
+    background-color: #cbb5ff;
+    transform: scale(1.03);
+}
+
+/* ---------- RESULT TITLE ---------- */
+
+.calc-result-title {
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* ---------- RESULT TABLE WRAPPER (BORDER MATCHES MAIN TABLE) ---------- */
+
+.calc-result-wrapper {
+    margin: 20px auto;
+    max-width: 780px;
+    border: 1px solid #3b0b77;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+/* ---------- RESULT TABLE ---------- */
+
+.calc-result-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Georgia, serif;
+    font-size: 16px;
+}
+
+.calc-result-table th {
+    padding: 10px;
+    border: 1px solid #999;
+    background-color: #f3e6ff;
+    font-weight: 700;
+}
+
+.calc-result-table td {
+    padding: 8px 12px;
+    border: 1px solid #999;
+    text-align: center;
+}
+
+.calc-result-table tr:nth-child(even) td {
+    background-color: #faf7ff;
+}
+
+/* Center calculator and results */
+#calculator,
+#calc-result {
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-bottom-spacer {
+    height: 300px; /* adjust to how much scroll space you want */
+}
+
+/* ---- line chart under calculator ---- */
+
+#chart-container {
+    display: none;
+    max-width: 1500px;   /* wider chart area */
+    width: 100%;
+    margin: 30px auto 0 auto;
+    padding: 0;
+    border: none;
+    background: #ffffff;
+    box-sizing: border-box;
+    height: 550px;
+}
+
+
+#earnings-chart {
+    width: 800px;   /* match the HTML width */
+    height: auto;
+    display: block;
+}
+
+.chart-slider-row {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    font-size: 18px;
+}
+
+#year-slider {
+    width: 260px;
+}
+
+/* ----- animated appearance for results + chart ----- */
+
+/* result block starts invisible */
+#calc-result {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* when we add .visible it fades/slides in */
+#calc-result.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* chart is hidden until we add .visible */
+#chart-container {
+    display: none;
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+/* when visible: show + animate */
+#chart-container.visible {
+    display: block;
+    animation: fadeSlideIn 0.4s ease forwards;
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Reduce gap below "What degree do you have?" */
+.degree-row {
+    margin-top: 10px !important;   /* was 18px from .calc-row */
+    margin-bottom: 20px;
+}
+
+/* Bring up Bachelors / Masters closer to the question */
+.degree-options {
+    margin-top: 8px !important;    /* was 18px */
+}
+
+/* Reduce spacing between each calculator row */
+.calc-row {
+    margin-top: 14px;              /* was 18px */
+}
+
+.degree-options input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* UNSELECTED pill — slightly thicker border (2px instead of 1px) */
+/* NON-SELECTED (default): thin border */
+/* default (NOT selected) — thinner border */
+/* default (NOT selected) — thin clean border */
+.degree-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 28px;
+    border-radius: 40px;
+    border: 1px solid #3b0b77;   /* stays the same always */
+    background: #ffffff;
+    font-size: 18px;
+    font-family: "Playfair Display", Georgia, serif;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* SELECTED — same border, just lavender fill */
+.degree-options input[type="radio"]:checked + .degree-pill {
+    background-color: #d8c6ff;
+    color: #000;
+    /* no border change */
+}
+
+
+
+
+.degree-pill:hover {
+    background-color: #f3e6ff;
+    transform: translateY(-1px);
+}
+
+
+/* --- CLEAN + MERGED + MATCHES PILL BORDER --- */
+
+#calculator input[type="text"] {
+    width: 80px;                /* compact size */
+    height: 25px;
+    padding: 4px 10px;
+    font-size: 17px;
+
+    border: 3px solid #3b0b77;  /* 🟣 same border as degree pills */
+    border-radius: 14px;        /* smaller rounded look */
+    background: #ffffff;
+
+    text-align: center;         /* center the typed numbers */
+    line-height: 1;
+    outline: none;
+    font-family: "Playfair Display", Georgia, serif;
+
+    transition: 0.25s ease;
+}
+
+#calculator input[type="text"]:focus {
+    border-color: #3b0b77; /* keep consistent */
+    outline: none;
+}
+
+
+#calculator input[type="text"] {
+    width: 220px;
+    padding: 10px 12px;
+    font-size: 18px;
+    border: 1px solid #3b0b77;
+    border-radius: 12px;
+    outline: none;
+
+    text-align: center;      /* ⬅️ centers the typing horizontally */
+}
+
+#calculator input[type="text"] {
+    line-height: 1;          /* keeps vertical alignment clean */
+}
+
+#calculator input[type="text"] {
+    width: 80px;        /* was 220px */
+    height: 25px;        /* add fixed height to control size */
+    padding: 4px 10px;
+    font-size: 17px;
+    border-radius: 14px;
+}
+
+#year-slider {
+    -webkit-appearance: none;
+    width: 260px;
+    height: 10px;
+    background: #e8d6ff;         /* light lavender */
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Chrome / Edge / Safari */
+#year-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 22px;
+    width: 22px;
+    background: #9e32e6;         /* your purple accent */
+    border-radius: 50%;
+    border: 3px solid white;     /* clean white ring */
+    box-shadow: 0 0 4px rgba(0,0,0,0.25);
+    transition: 0.2s;
+}
+
+#year-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+/* Firefox */
+#year-slider::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+    background: #9e32e6;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 4px rgba(0,0,0,0.25);
+}
+
+
+.chart-slider-row label {
+    font-size: 15px;   /* change this to whatever size you want */
+    font-weight: bold;  /* optional: makes it stand out a bit more */
+}
+
+.title-container {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 18px;
+    position: relative; /* allow pseudo-element positioning */
+}
+
+.title-small {
+    font-size: 22px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #000000;
+    display: inline-block; /* makes width match text length */
+    position: relative;    /* anchor the underline */
+}
+
+/* underline that matches the exact text width */
+.title-small::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -8px;  /* gap between text and line */
+    height: 2px;
+    background-color: #000000;
+    margin: 0 auto;
+}
+

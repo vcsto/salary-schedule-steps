@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Salary Schedule</title>
+    <link rel="stylesheet" href="secondPage.css">
+</head>
+<body>
+    <button id="back-btn">← Back</button>
+
+    <div class="title-container">
+        <div class="title-main">SOUTH WESTERN SCHOOL DISTRICT</div>
+        <div class="title-sub">YORK COUNTY</div>
+        <div class="title-small">Salary Schedule &amp; Steps</div>
+    </div>
+
+    <div id="button-row">
+        <button>2023-2024</button>
+        <button>Button 2</button>
+        <button>Button 3</button>
+        <button>Button 4</button>
+        <button>Button 5</button>
+    </div>
+
+    <div id="table-wrapper">
+        <table id="salary-table"></table>
+    </div>
+
+    <div id="calculator">
+        <h3>Salary Calculator</h3>
+    
+        <div class="calc-row degree-row">
+            <span>What degree do you have?</span>
+        
+            <div class="degree-options">
+                <input
+    type="radio"
+    id="degree-bachelors"
+    name="degree"
+    value="bachelors"
+/>
+<label for="degree-bachelors" class="degree-pill">Bachelors</label>
+
+<input
+    type="radio"
+    id="degree-masters"
+    name="degree"
+    value="masters"
+/>
+<label for="degree-masters" class="degree-pill">Masters</label>
+            </div>
+        </div>
+        
+    
+        <div class="calc-row">
+            <label for="calc-step">What year are you at?</label>
+            <input id="calc-step" type="text" inputmode="numeric" pattern="\d*">
+        </div>
+    
+        <div class="calc-row">
+            <label for="calc-credits">How many credits do you have?</label>
+            <input id="calc-credits" type="text" inputmode="numeric" pattern="\d*">
+        </div>
+        
+    
+        <button id="calc-btn" disabled>Calculate</button>
+
+        <!-- TABLE RESULTS -->
+        <div id="calc-result"></div>
+
+        <!-- LINE CHART UNDER THE TABLE -->
+        <div id="chart-container">
+            <canvas id="earnings-chart" width="720" height="550"></canvas>
+        
+            <!-- slider under the chart -->
+            <div class="chart-slider-row">
+                <label for="year-slider">
+                    Show career earnings over
+                    <span id="year-slider-value">5</span> years:
+                </label>
+                <input
+                    type="range"
+                    id="year-slider"
+                    min="1"
+                    max="30"
+                    value="5"
+                />
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- bottom space for scrolling -->
+    <div class="page-bottom-spacer"></div>
+    <div class="scroll-spacer"></div>
+
+    <script src="secondPage.js"></script>
+</body>
+</html>
