@@ -16,21 +16,21 @@ const paDistricts = [
     "District 4"
 ];
 
-const stateInput = document.getElementById("state-input");
-const stateDropdown = document.getElementById("state-dropdown");
-const districtInput = document.getElementById("district-input");
+const stateInput       = document.getElementById("state-input");
+const stateDropdown    = document.getElementById("state-dropdown");
+const districtInput    = document.getElementById("district-input");
 const districtDropdown = document.getElementById("district-dropdown");
-const goButton = document.getElementById("go-btn");
-const resultBox = document.getElementById("result"); // ok if this is null
+const goButton         = document.getElementById("go-btn");
+const resultBox        = document.getElementById("result"); // ok if null
 
-let selectedState = "";
+let selectedState    = "";
 let selectedDistrict = "";
 
-// start disabled
-goButton.disabled = true;
-goButton.classList.remove("enabled");
+function syncInputHighlight() {
+    stateInput.classList.toggle("input-selected", !!selectedState);
+    districtInput.classList.toggle("input-selected", !!selectedDistrict);
+}
 
-// helper to turn button on/off
 function updateGoButtonState() {
     const ready = !!(selectedState && selectedDistrict);
     if (ready) {
@@ -42,12 +42,19 @@ function updateGoButtonState() {
     }
 }
 
-// ----- STATE INPUT -----
+goButton.disabled = true;
+goButton.classList.remove("enabled");
+syncInputHighlight();
+
+
 stateInput.addEventListener("input", () => {
     const value = stateInput.value.toLowerCase().trim();
     stateDropdown.innerHTML = "";
-    selectedState = "";          // typing resets selected state
-    selectedDistrict = "";       // and clears district selection
+
+    selectedState    = "";
+    selectedDistrict = "";
+    districtInput.value = "";
+    syncInputHighlight();
     updateGoButtonState();
 
     if (value === "") {
@@ -78,7 +85,6 @@ function selectState(state) {
     stateInput.value = state;
     stateDropdown.style.display = "none";
 
-    // reset district when state changes
     districtInput.value = "";
     selectedDistrict = "";
     districtDropdown.style.display = "none";
@@ -87,6 +93,7 @@ function selectState(state) {
         resultBox.textContent = "";
     }
 
+    syncInputHighlight();
     updateGoButtonState();
 }
 
@@ -96,7 +103,7 @@ document.addEventListener("click", e => {
     }
 });
 
-// ----- DISTRICT INPUT -----
+
 function buildDistrictDropdown(filterText = "") {
     if (selectedState !== "Pennsylvania") {
         districtDropdown.style.display = "none";
@@ -130,8 +137,11 @@ districtInput.addEventListener("focus", () => {
 
 districtInput.addEventListener("input", () => {
     const value = districtInput.value.trim();
-    selectedDistrict = "";          // typing breaks the old selection
+
+    selectedDistrict = "";
     buildDistrictDropdown(value);
+
+    syncInputHighlight();
     updateGoButtonState();
 });
 
@@ -144,6 +154,7 @@ function selectDistrict(district) {
         resultBox.textContent = "";
     }
 
+    syncInputHighlight();
     updateGoButtonState();
 }
 
@@ -159,7 +170,8 @@ districtInput.addEventListener("keydown", e => {
                 selectDistrict(first.textContent);
             }
         } else {
-            selectedDistrict = value;  // manual entry
+            selectedDistrict = value;
+            syncInputHighlight();
             updateGoButtonState();
         }
     }
@@ -171,8 +183,9 @@ document.addEventListener("click", e => {
     }
 });
 
-// ----- GO BUTTON -----
+
 goButton.addEventListener("click", () => {
-    if (!(selectedState && selectedDistrict)) return; // double-check
-    window.location.href = `secondPage.html?district=${encodeURIComponent(selectedDistrict)}`;
+    if (!(selectedState && selectedDistrict)) return; 
+    window.location.href =
+        `secondPage.html?district=${encodeURIComponent(selectedDistrict)}`;
 });
