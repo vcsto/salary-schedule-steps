@@ -68,6 +68,22 @@ h1 {
     background: #f0f0f0;
 }
 
+/* darker border + glow once a value has been selected */
+#state-input.input-selected,
+#district-input.input-selected {
+    border-color: #510f7d;
+}
+
+
+/* focused OR selected = darker purple */
+#state-input:focus,
+#district-input:focus,
+#state-input.selected-input,
+#district-input.selected-input {
+    outline: none;
+    border-color: #510f7d;       /* deeper purple */
+}
+
 /* --- GO BUTTON ALWAYS VISIBLE --- */
 
 .go-btn {
